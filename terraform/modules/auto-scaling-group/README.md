@@ -1,5 +1,6 @@
 # AWS-Auto-Scaling-Group
 > Module to provision an autoscaling group
+
 _Inputs_:
 - autoscaling_group_name: Name for the group in AWS
 - launch_template_id: ID for the template to use to provision EC2 instances
