@@ -1,0 +1,58 @@
+- name: ec2
+  hosts: localhost
+  vars:
+    - home: "{{ lookup('env','HOME') }}"
+  connection: local
+  gather_facts: no
+  tasks:
+    - name: import keypair
+      amazon.aws.ec2_key:
+        name: ec2-user
+        key_material: "{{ lookup('file', '{{ home }}/.ssh/id_rsa.pub') }}"
+      tags:
+        - ec2_create
+        - ec2_keypair
+
+    - name: create launch template
+      community.aws.ec2_launch_template:
+        name: apache_portfolio_template
+        image_id: ami-0d75513e7706cf2d9
+        key_name: ec2-user
+        instance_type: t2.micro
+        region: eu-west-1
+        network_interfaces:
+         - associate_public_ip_address: true
+           delete_on_termination: true
+           device_index: 0
+           groups: ["sg-07179e696d508cdab"]
+        block_device_mappings:
+          - device_name: /dev/sda1
+            ebs:
+              delete_on_termination: true
+              volume_size: 8
+              volume_type: gp2
+        user_data: "{{ lookup('file', 'user_data.txt') }}"
+      tags:
+        - ec2_template
+
+    - name: launch EC2
+      amazon.aws.ec2_instance:
+        name: amazon-instance-1
+        region: eu-west-1
+        key_name: ec2-user
+        instance_type: t2.micro
+        security_group: sg-07179e696d508cdab
+        vpc_subnet_id: subnet-04dca3341b59d0972
+        network:
+          assign_public_ip: true
+          delete_on_termination: true
+        image_id: ami-0d75513e7706cf2d9
+        user_data: "{{ lookup('file', 'user_data.sh') }}"
+        volumes:
+          - device_name: /dev/sda1
+            ebs:
+              volume_size: 8
+              volume_type: gp2
+              delete_on_termination: true
+      tags:
+        - ec2_create
