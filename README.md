@@ -17,3 +17,9 @@ Dependencies:
     - [tflint](https://github.com/terraform-linters/tflint): A Pluggable Terraform Linter
     - [tfsec](https://aquasecurity.github.io/tfsec/): A static analysis security scanner
     - [checkov](https://github.com/bridgecrewio/checkov): A static code analysis tool for infrastructure-as-code
+
+## Known Points for Improvement:
+- Automate DNS resolution for domain name
+- Manage Certificate for domain in terraform
+- Distribute EC2s cross-region instead of cross-AZ
+- Display a webapp instead of Apache2 test page -> via modification to userdata.sh in EC2 launch template
