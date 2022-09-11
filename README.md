@@ -12,6 +12,9 @@ At a high level, the provisioned resources are:
 - EC2 Auto-Scaling Group (Across three availability zones: eu-west-1a, eu-west-1b, eu-west-1c)
     - Auto-Scaling Policy (CPU Util 50%)
 - Application Load Balancer
+<p align="center">
+    <img src="https://github.com/patrickellis/AWS-Highly-Available-WebApp/blob/main/images/Architecture-diagram.png" style="width:700px; height:500px; padding-top:100px;"/>
+</p>
 
 ## Terraform
 Terraform has been run with pre-commit hooks (see [pre-commit](https://pre-commit.com/))

@@ -18,6 +18,7 @@ resource "aws_autoscaling_group" "auto-scaling-group" {
 
   launch_template {
     id = var.launch_template_id
+    version = "$Latest"
   }
 
   enabled_metrics = ["GroupInServiceInstances", "GroupPendingInstances", "GroupTotalInstances", "GroupTotalCapacity"]
