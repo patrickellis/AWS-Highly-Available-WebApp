@@ -1,3 +1,11 @@
+resource "aws_autoscaling_policy" "auto-scaling-policy" {
+    name = "policy-demo"
+    autoscaling_group_name = aws_autoscaling_group.auto-scaling-group.name
+    cooldown = 300
+    enabled = true
+    scaling_adjustment = 1
+    adjustment_type = "ChangeInCapacity"
+}
 
 resource "aws_autoscaling_group" "auto-scaling-group" {
   name                      = var.autoscaling_group_name
@@ -11,6 +19,8 @@ resource "aws_autoscaling_group" "auto-scaling-group" {
   launch_template {
     id = var.launch_template_id
   }
+
+  enabled_metrics = ["GroupInServiceInstances", "GroupPendingInstances", "GroupTotalInstances", "GroupTotalCapacity"]
   vpc_zone_identifier = var.vpc_subnets
   target_group_arns   = var.target_group_arns
 }
