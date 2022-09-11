@@ -31,9 +31,9 @@ Dependencies:
 ## Known Points for Improvement:
 - Automate DNS resolution for domain name
 - Manage Certificate for domain in terraform
-- Display a webapp instead of Apache2 test page -> via modification to userdata.sh in EC2 launch template
-- SED a .html file in the webapp to include the hostname and IP so we can validate Load balancing
-- If availibity is absolutely critical, you could add a "warm pool" of VMs to the auto-scaling group for failover scenarios
+- ~display a webapp instead of Apache2 test page -> via modification to userdata.sh in EC2 launch template~
+- ~SED a .html file in the webapp to include the hostname and IP so we can validate Load balancing~
+- If availability is absolutely critical, we could add a "warm pool" of VMs to the auto-scaling group for failover scenarios
 
 ## Further Considerations: 
 - Monitoring and Maintainability:
