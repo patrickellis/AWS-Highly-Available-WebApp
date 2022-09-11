@@ -1,5 +1,6 @@
 # AWS Highly Available Web Service
 > Repository to hold files for provisioning and configuring a highly available web application on AWS
+Visit the website [here](https://www.patrickellis.dev)
 
 ## Architecture
 At a high level, the provisioned resources are:
